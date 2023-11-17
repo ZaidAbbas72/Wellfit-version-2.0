@@ -1,0 +1,73 @@
+.class-parallax{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url("/static/images/class_parallax.jpg") no-repeat;
+    height: calc(120px + 5vw); 
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100% ;
+  
+  }
+
+  .online-class-parallax{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url("/static/images/online_class_parallax.jpg") no-repeat;
+    height: calc(120px + 5vw); 
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100% ;
+  
+  }
+
+  .coach-parallax{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url("/static/images/coach_parallax.jpg") no-repeat;
+    height: calc(120px + 5vw); 
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100% ;
+  
+  }
+
+  .honor-parallax{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url("/static/images/honor_parallax.jpg") no-repeat;
+    height: calc(120px + 5vw); 
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100% ;
+
+  }
+
+  .gallery-parallax{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url("/static/images/gallery_parallax.jpg") no-repeat;
+    height: calc(120px + 5vw); 
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100% ;
+  
+  }
+
+  @media (max-width:700px){
+    [class*="parallax"]{
+      height: calc(80px + 2vw);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }

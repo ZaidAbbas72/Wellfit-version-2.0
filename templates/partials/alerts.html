@@ -1,0 +1,10 @@
+{% if messages %}
+    {% for message in messages %}
+        <div id="message" class="container mx-center w-{{x}}">
+            <div class="alert alert-{{ message.tags }} alert-dismissible text-center" role="alert" style="z-index: 2147483647;">
+                <button type="button" class="close" data-dismiss="alert" style="outline: none;"><span aria-hidden="true">&times;</span></button>
+             <strong style="font-size:calc(8px + 0.5vw);text-align:center;">  {{ message }} </strong> 
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}

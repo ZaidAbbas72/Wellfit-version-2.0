@@ -1,0 +1,22 @@
+@import "Base";
+@import "NavBar";
+@import "Footer";
+@import "Schedule-Table";
+@import "Coach-of-Class";
+@import "Banner";
+@import "Title";
+
+.class-info {
+  text-align: justify;
+  line-height: 2.5em;
+  direction: rtl;
+  background-color: $FourthColor;
+  padding: 10px;
+  border: solid 2px $SecondColor;
+  width: 66%;
+  font-size: calc(4px + 1vw);
+  h1 {
+    color: $SecondColor;
+  }
+
+}

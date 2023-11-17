@@ -1,0 +1,37 @@
+@import "Base";
+@import "NavBar";
+@import "Carousel-Banner";
+@import "Class-Card";
+@import "Coach-Carousel";
+@import "Index-Gallery";
+@import "Footer";
+@import "Title";
+@import "Honors";
+@import "Parallax";
+@import "Magnicifent-Popup";
+@import "Scroll-Button";
+
+html {
+  scroll-behavior: smooth;
+}
+
+.simple-button {
+  color: $FourthColor;
+  background-color: $SecondColor;
+  border: none;
+  padding: 5px 5px;
+  text-decoration: none !important;
+  font-size: calc(7px + 0.5vw);
+  font-weight: bolder;
+  display: block;
+  width: 17%;
+  border-radius: 50px;
+  text-align: center;
+
+  &:hover {
+    color: white;
+    background: linear-gradient(to bottom, $SecondColor, rgb(124, 18, 18));
+  }
+
+}
+

@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wellfit{% block title %}{% endblock %}</title>
+  <link rel="icon" href="{% static 'images/logo.png' %}" type="image/icon type">
+  <!-- Css Styles -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  {% if '/' == request.path %}
+  <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+
+  {% elif '/' == request.path %}
+  <link rel="stylesheet" href="{% static 'css/class.css' %}" />
+
+  {% elif '/' == request.path %}
+  <link rel="stylesheet" href="{% static 'css/workout.css' %}" />
+
+  {% elif '/our_team/' == request.path %}
+  <link rel="stylesheet" href="{% static 'css/our-team.css' %}" />
+
+  {% elif '/gallery/' == request.path %}
+  <link rel="stylesheet" href="{% static 'css/gallery.css' %}" />
+
+  {% elif '/contact_us/' == request.path %}
+  <link rel="stylesheet" href="{% static 'css/contact-us.css' %}" />
+
+  {% elif '/accounts/profile' == request.path or '/cart' in request.path %}
+  <link rel="stylesheet" href="{% static 'css/profile.css' %}" />
+
+  {% elif '/classes/presence_classes' in request.path %}
+  <link rel="stylesheet" href="{% static 'css/classes.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/class-details.css' %}" />
+
+  {% elif 'classes/private_classes' in request.path or 'classes/public_classes' in request.path %}
+  <link rel="stylesheet" href="{% static 'css/classes.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/online-class-details.css' %}" />
+
+  {% elif '/workouts/beginner_workouts' in request.path  or '/workouts/intermediate_workouts' in request.path or '/workouts/search' in request.path or '/workouts/advanced_workouts' in request.path  %}
+  <link rel="stylesheet" href="{% static 'css/workouts-list.css' %}" />
+
+  {% elif '/workouts/workouts' in request.path %}
+  <link rel="stylesheet" href="{% static 'css/workout.css' %}" />
+
+  {% endif %}
+
+  {% if '/workouts/search' in request.path %}
+  <link rel="stylesheet" href="{% static 'css/workout.css' %}" />
+  {% endif %}
+</head>
+
+<body>
+  <!--NavBar-->
+  {% include 'partials/navbar.html' %}
+  <!--contents-->
+  {% block content%} {%endblock%}
+  <!--footer-->
+  {% include './partials/footer.html' %}
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+  <script src="{% static 'js/ajax.js' %}"></script>
+  <script src="{% static 'js/csrf.ajax.js' %}"></script>
+  <script>
+    $(function () {
+      AOS.init({
+        once: true,
+        offset: 10,
+      });
+    });
+  </script>
+</body>

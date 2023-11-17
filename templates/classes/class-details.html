@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %}| Class Details{% endblock %}
+{% block content %}
+
+<!--Banner-->
+<section>
+  <div class="banner" style="background-image: url('{{ banner.image.url }}');">
+    {% include 'partials/alerts.html' with x="50" %}
+    <h1 data-aos="fade-up" data-aos-duration="800">{{ banner.title }}</h1>
+    <div class="page-address">
+      <span><i class="fa fa-home"></i></span>
+      <span> Class Details </span>
+      <span><i class="fas fa-chevron-right"></i></span>
+      <span> In-Person Classes </span>
+      <span><i class="fas fa-chevron-right"></i></span>
+      <span> Home </span>
+    </div>
+  </div>
+</section>
+
+<!--Class Info-->
+<section class="container class-info">
+  <h1>{{ details.title }}</h1>
+  <p>
+    {{ details.description }}
+  </p>
+</section>
+
+<!--Coach-->
+<section class="container-fluid">
+  <span class="simple-title">Coach Information</span>
+
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-4 coach-image">
+      <img src="{{details.coach.photo.url}}" alt="" />
+    </div>
+    <div class="col-md-4 coach-info">
+      <div class="coach-header">
+        <h3>{{ details.coach.name }}</h3>
+        {% if details.coach.info_1 %}
+        <p>{{ details.coach.info_1 }}</p>
+        {% endif %}
+
+        {% if details.coach.info_2 %}
+        <p>{{ details.coach.info_2 }}</p>
+        {% endif %}
+
+        {% if details.coach.info_3 %}
+        <p>{{ details.coach.info_3 }}</p>
+        {% endif %}
+
+        {% if details.coach.info_4 %}
+        <p>{{ details.coach.info_4 }}</p>
+        {% endif %}
+        <h4>Years of Experience: {{ details.coach.hire_date | timesince }}</h4>
+      </div>
+
+      <div class="coach-social">
+        <a {% if details.coach.instagram_link %} href="{{details.coach.instagram_link}}" {% else %} href="#"
+          {% endif %}><i class="fab fa-instagram"></i></a>
+
+        <a {% if details.coach.twitter_link %} href="{{details.coach.twitter_link}}" {% else %} href="#" {% endif %}><i
+            class="fab fa-twitter"></i></a>
+
+        <a {% if details.coach.facebook_link %} href="{{details.coach.facebook_link}}" {% else %} href="#"
+          {% endif %}><i class="fab fa-facebook"></i></a>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Schedules -->
+<section class="container-fluid my-5">
+  <span class="simple-title">Class Schedule</span>
+  <!-- Tab links -->
+  <div class="tab">
+    {% for class in classes %}
+    {% if class == class1 %}
+    <button class="tablinks active" onclick="schedule(event, '{{ class.title }}')">{{ class.title }}</button>
+    {% else %}
+    <button class="tablinks" onclick="schedule(event, '{{ class.title }}')">{{ class.title }}</button>
+    {% endif %}
+
+    {% endfor %}
+
+  </div>
+
+  <!-- Tab content -->
+  {% for class in classes %}
+
+  {% if class == class1 %}
+  <div id="{{ class.title }}" class="tabcontent" style="display: block;">
+    {% else %}
+    <div id="{{ class.title }}" class="tabcontent">
+      {% endif %}
+
+      <div class="schedule">
+        <img src="{% static 'images/Saturday.png' %}" alt="">
+        <h5>{{ class.saturday }}</h5>
+      </div>
+
+      <div class="schedule">
+        <img src="{% static 'images/Sunday.png' %}" alt="">
+        <h5>{{ class.sunday }}</h5>
+      </div>
+
+      <div class="schedule">
+        <img src="{% static 'images/Monday.png' %}" alt="">
+        <h5>{{ class.monday }}</h5>
+      </div>
+
+      <div class="schedule">
+        <img src="{% static 'images/Tuesday.png' %}" alt="">
+        <h5>{{ class.tuesday }}</h5>
+      </div>
+
+      <div class="schedule">
+        <img src="{% static 'images/Wednesday.png' %}" alt="">
+        <h5>{{ class.wednesday }}</h5>
+      </div>
+
+      <div class="schedule">
+        <img src="{% static 'images/Thursday.png' %}" alt="">
+        <h5>{{ class.thursday }}</h5>
+      </div>
+
+      <div class="schedule">
+        <img src="{% static 'images/Friday.png' %}" alt="">
+        <h5>{{ class.friday }}</h5>
+      </div>
+    </div>
+    {% endfor %}
+
+</section>
+
+
+{% endblock %}

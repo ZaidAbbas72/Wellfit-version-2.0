@@ -1,0 +1,68 @@
+.coach-info {
+  background-color: $FourthColor;
+
+  p {
+    word-spacing: 2px;
+    letter-spacing: 1px;
+  }
+}
+.coach-header {
+  margin-bottom: 2em;
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  h3 {
+    font-size: 35px;
+    color: $SecondColor;
+  }
+
+  h5 {
+    color: $SecondColor;
+    margin-bottom: 2em;
+  }
+}
+.coach-social {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 2.5em;
+  margin-bottom: 1em;
+  i {
+    font-size: larger;
+  }
+}
+
+.coach-image {
+  background-color: $ThirdColor;
+  img {
+    max-width: 100%;
+    height: 500px;
+  }
+}
+
+.coach-table {
+  width: 40%;
+  background-color: $FourthColor;
+  text-align: start;
+  margin: 2em;
+  direction: rtl;
+  tr {
+    &:not(:nth-of-type(4)) {
+      border-bottom: 1px solid #ff191965;
+    }
+    th {
+      color: $ThirdColor;
+      padding: 5px;
+      padding-left: 4em;
+      white-space: nowrap;
+    }
+    td {
+      padding: 5px 0;
+      padding-left: 5px;
+      padding-right: 2em;
+      direction: rtl;
+      white-space: nowrap;
+    }
+  }
+}

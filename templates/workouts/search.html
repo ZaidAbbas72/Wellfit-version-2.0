@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block title %}| Home Workouts {% endblock %}
+{% block content %}
+
+
+<!--Search box-->
+<section class="container" style="padding-top: 12em;">
+  <div class="search-box mx-auto">
+    <h1>Search for Workouts</h1>
+
+    <form action="{% url 'search' %}">
+      <div class="filter">
+        <div class="checkboxes">
+          <label class="checkbox">Beginner Level
+            <input type="checkbox" value="beginner" name="beginner">
+            <span class="checkmark"></span>
+          </label>
+
+          <label class="checkbox">Intermediate Level
+            <input type="checkbox" value="intermediate" name="intermediate">
+            <span class="checkmark"></span>
+          </label>
+
+          <label class="checkbox">Advanced Level
+            <input type="checkbox" value="advanced" name="advanced">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+        <select name="workouts-list">
+          <option disabled selected>Show By:</option>
+          {% if workouts %}
+          {% for workout in workouts %}
+          <option>{{ workout.title }}</option>
+          {% endfor %}
+          {% endif %}
+        </select>
+      </div>
+      <div class="search-input mx-auto">
+        <input type="submit" value="Search">
+        <input type="text" name="keywords" placeholder="Search">
+        <i class="fas fa-search"></i>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!--Workouts-->
+<section class="container-fluid my-5">
+  <span class="simple-title">Search Results</span>
+
+  {% for workout in queryset_list %}
+  <div class="row no-gutters workout">
+    <div class="col-md-6 workout-info order-md-2">
+      <div class="workout-info-header" style="justify-content: space-around;">
+        <h3>{{workout.title}}</h3>
+        <h3 style="font-family: Numberpile;">{{ workout.rule}}</h3>
+      </div>
+      <p>{{workout.description}}</p>
+    </div>
+    <div class="col-md-3 workout-image order-md-1">
+      <img src="{{workout.image.url}}" alt="" />
+    </div>
+  </div>
+  {% endfor%}
+</section>
+<!--Scroll Up Button-->
+<a href="#" class="scrollup">
+  <i class="fas fa-chevron-up"></i>
+</a>
+
+
+{% endblock %}

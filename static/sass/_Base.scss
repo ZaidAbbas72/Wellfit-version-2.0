@@ -1,0 +1,29 @@
+$FirstColor: black;
+$SecondColor: rgb(255, 25, 25);
+$ThirdColor: white;
+$FourthColor: rgb(27, 27, 27);
+
+body {
+  background-color: $FirstColor;
+  color: $ThirdColor;
+  font-weight: bolder;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+header {
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 2;
+  position: absolute;
+  width: 100%;
+  font-weight: bolder;
+  font-size: 20px;
+}
+
+button:focus {
+  outline: 0;
+}
+
+section {
+  margin-bottom: 2em;
+}

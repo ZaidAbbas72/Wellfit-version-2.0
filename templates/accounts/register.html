@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gym Project | Register</title>
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />  
+    <link rel="stylesheet" href="{% static 'css/login&register.css' %}" />
+
+</head>
+
+<body onLoad="window.scrollBy(0, 114)">
+    <a href="{% url 'index' %}" class="brand">
+        <img src="{% static 'images/logo.png' %}" alt="" />
+        <h5>Gym Name</h5>
+    </a>
+
+    <!--Register-->
+    <div class="form mx-auto">
+        <div class="form-header">
+            Register
+            <i class="fas fa-clipboard-list"></i>
+        </div>
+
+        {% include 'partials/alerts.html' with x="100" %}
+
+        <form method="POST" action="{% url 'register' %}">
+            {% csrf_token %}
+
+            <label for="firstname">First Name:</label>
+            <div class="input">
+                <i class="fas fa-user"></i>
+                <input type="text" name="first_name" id="focus">
+            </div>
+
+            <label for="lastname">Last Name:</label>
+            <div class="input">
+                <i class="fas fa-user-edit"></i>
+                <input type="text" name="last_name">
+            </div>
+
+            <label for="username">Username:</label>
+            <div class="input">
+                <i class="fas fa-user-tag"></i>
+                <input type="text" name="username" required>
+            </div>
+
+            <label for="email">Email:</label>
+            <div class="input">
+                <i class="fa fa-envelope icon"></i>
+                <input type="email" name="email" required>
+            </div>
+
+            <label for="password">Password:</label>
+            <div class="input" required>
+                <i class="fas fa-key"></i>
+                <input type="password" name="password">
+            </div>
+
+            <label for="password-again">Confirm Password:</label>
+            <div class="input">
+                <i class="fas fa-key"></i>
+                <input type="password" name="password-again" required>
+            </div>
+
+            <input type="submit" value="Register">
+            <div class="redirect-link">
+                <span>Already registered?</span>
+                <a href="{% url 'login' %}">Log In</a>
+            </div>
+        </form>
+    </div>
+
+    <a href="{% url 'index' %}" class="return">Return to Homepage</a>
+    <div class="lower-footer">
+        
+        © 2020 Copyright :
+        <a href="{% url 'index' %}"> My Gym</a>
+    </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>

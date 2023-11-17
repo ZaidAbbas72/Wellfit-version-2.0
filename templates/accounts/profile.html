@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+{% block title %}| User Panel {% endblock %}
+{% block content %}
+{% load humanize %}
+
+
+<!--Banner-->
+<section>
+  <div class="banner" style="background-image: url('{{ banner.image.url }}');">
+    {% include 'partials/alerts.html' with x="50" %}
+    <h1 data-aos="fade-up" data-aos-duration="800">{{banner.title}} </h1>
+    <span style="z-index: 2;"  data-aos="zoom-in" data-aos-duration="800" data-aos-delay="300">Welcome to your user panel, {{user.username}}</span>
+  </div>
+</section>
+
+<!--Messages-->
+{% if email_messages %}
+<section class="container my-5">
+  <span class="simple-title">Sent Messages</span>
+  <div id="Email">
+    {% for email in email_messages %}
+    <div class="card">
+
+      <button class="collapse-button message-header" data-toggle="collapse" data-target="#collapse{{forloop.counter}}"
+        aria-expanded="false" aria-controls="collapse{{forloop.counter}}" id="heading{{forloop.counter}}"
+        style="direction: rtl;">
+        <i class="fa fa-envelope fa-lg ml-2" style="color:black;"></i>
+        {{ email.message_date }}
+      </button>
+
+      <div id="collapse{{forloop.counter}}" class="collapse" aria-labelledby="heading{{forloop.counter}}"
+        data-parent="#Email">
+        <div class="card-body">
+          <p class="message-content">{{email.message}}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+<!--Requested Classes-->
+<section class="container">
+  {% if not cart.selected_class.all and not cart.online_selected_class.all %}
+  {% else %}
+  <span class="simple-title">Requested Classes</span>
+  <table class="table registers-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Class Name</th>
+        <th>Class Fee (Monthly)</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody class="registers-body">
+
+      {% for class in cart.selected_class.all %}
+      <tr class="registered-class">
+        <td>{{ forloop.counter }}</td>
+        <td>{{ class.title }}</td>
+        <td>{{ class.price | intcomma:False }} Rs</td>
+        <td>
+          <div class="buttons">
+            {% include 'cart-remove-profile.html' with class_id=class.id id="class_id" %}
+            <a class="detail" href="{% url 'class_details' class.id %}">View Details</a>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+
+      {% for class in cart.online_selected_class.all %}
+      <tr class="registered-class">
+        <td>{{ forloop.counter|add:index }}</td>
+        <td>{{ class.title }}</td>
+        <td>{{ class.price | intcomma:False }} Rs</td>
+        <td>
+          <div class="buttons">
+            <form method="POST" action={% url 'update_online' %} data-endpoint="{% url 'update_online' %}"
+              class="button-class class_form">
+              {% csrf_token %}
+              <input type="hidden" name='online_class_id' value='{{ class.id }}' />
+              <input class="cancel" type="submit" value="Cancel" />
+            </form>
+            <a class="detail" href="{% url 'class_details' class.id %}">View Details</a>
+          </div>
+
+        </td>
+      </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+
+  <form action="" method="POST">
+    {% csrf_token %}
+    <p>{{ object.register_id }}<span class="payment-info"> :Registration ID</span></p>
+    <p class="total"><span class="payment-info"> Total Fee: </span>{{ cart.total| intcomma:False }} rs </p>
+    <input class="payment" type="submit" name="checkout" value="Pay">
+  </form>
+  {% endif %}
+</section>
+<!-- =================================================================== -->
+<div class="cart-item-remove-form" style="display:none;">
+  {% include 'cart-remove-profile.html'%}
+</div>
+<!-- =================================================================== -->
+<section class="container my-5">
+  <span class="simple-title">Class Status</span>
+  <!--Active Classes-->
+  <div id="accordion">
+    <div class="card">
+      <button class="collapse-button class-info" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+        aria-controls="collapseOne" id="headingOne">
+        Active Classes
+      </button>
+      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+        <div class="card-body">
+          {% if not active_cart_show %}
+          <p> No active classes available </p>
+          {% else %}
+          {% for id,items in final_active_list %}
+          <div class="register-info">
+            <p class="ids"> {{id}}<span class="info"> :Registration ID</span></p>
+            <p class="classes"><span class="info"> Registered Classes: </span> {{items}} </p>
+          </div>
+          {% endfor %}
+
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <!--Expired Classes-->
+    <div class="card">
+      <button class="collapse-button  collapsed class-info" data-toggle="collapse" data-target="#collapseTwo"
+        aria-expanded="false" aria-controls="collapseTwo" id="headingTwo">
+        Expired Classes
+      </button>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+        <div class="card-body">
+          {% if not expired_cart_show %}
+          <p> No expired classes available </p>
+          {% else %}
+          {% for id,items in final_expired_list %}
+          <div class="register-info">
+            <p class="ids">{{id}} <span class="info">:Registration ID</span></p>
+            <p class="classes"><span class="info"> Registered Classes: </span> {{items}} </p>
+          </div>
+          {% endfor %}
+
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!--Settings-->
+<section class="container">
+  <span class="simple-title">Settings</span>
+  <form action="{% url 'profile' %}" method="POST" class="settings">
+    {% csrf_token %}
+    <div class="subscribe">
+      <p class="ml-3 pt-3">Receive notifications and news</p>
+      {% if checked %}
+      <input type="checkbox" name="subscribe_checkbox" class="ml-3" checked>
+      {% else %}
+      <input type="checkbox" name="subscribe_checkbox" class="ml-3">
+      {% endif %}
+    </div>
+    <label for="password">Change Password:</label>
+    <input type="password" name="change_password" id="password">
+    <input type="submit" name="submit_changes" value="Save" class="save my-3">
+  </form>
+</section>
+{% endblock %}

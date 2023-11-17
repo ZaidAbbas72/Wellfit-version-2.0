@@ -1,0 +1,150 @@
+{% load static %}
+<header style="z-index: 4;" id="header">
+  <div>
+    <div class="toggle">
+      <ul class="navbar-nav flex-row">
+
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a href="{% url 'profile'%}" class="nav-link px-2"><i class="fas fa-user-cog"></i><span
+              class="cart">{{ cart_count }}</span></a>
+
+        </li>
+        <li class="nav-item">
+          <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link px-2"><i
+              class="fas fa-sign-out-alt  fa-flip-horizontal"></i></a>
+          <form action="{% url 'logout' %}" method="POST" id="logout">
+            {% csrf_token %}
+            <input type="hidden">
+          </form>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a href="{% url 'register'%}" class="nav-link px-2"><i class="fas fa-user-plus"></i><span
+              class="cart">{{ cart_count }}</span></a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'login'%}" class="nav-link px-2"><i class="fas fa-sign-out-alt"></i></a>
+        </li>
+        {% endif %}
+        <li class="nav-item nav-divider">
+          <a href="{{ info.instagram_link }}" class="nav-link px-2"><i class="fab fa-twitter"></i></a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ info.facebook_link }}" class="nav-link px-2"><i class="fab fa-facebook"></i></a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ info.instagram_link }}" class="nav-link px-2"><i class="fab fa-instagram"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3"><i class="fa fa-bars menu"></i></a>
+        </li>
+      </ul>
+      <a href="{% url 'index' %}" class="navbar-brand2"><img src="{% static 'images/logo.png' %}" alt="" />
+        <h5>WELLFIT</h5>
+      </a>
+    </div>
+
+    <div class="social-nav flex-row">
+      <ul class="navbar-nav flex-row">
+
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a href="{% url 'profile'%}" class="nav-link px-2"><i class="fas fa-user-cog"></i><span
+              class="cart">{{ cart_count }}</span></a>
+        </li>
+        <li class="nav-item">
+          <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link px-2"><i
+              class="fas fa-sign-out-alt  fa-flip-horizontal"></i></a>
+          <form action="{% url 'logout' %}" method="POST" id="logout">
+            {% csrf_token %}
+            <input type="hidden">
+          </form>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a href="{% url 'register'%}" class="nav-link px-2"><i class="fas fa-user-plus"></i><span
+              class="cart">{{ cart_count }}</span></a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'login'%}" class="nav-link px-2"><i class="fas fa-sign-out-alt"></i></a>
+        </li>
+        {% endif %}
+
+        <li class="nav-item nav-divider">
+          <a href="{{ info.twitter_link }}" class="nav-link px-2"><i class="fab fa-twitter"></i></a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ info.facebook_link }}" class="nav-link px-2"><i class="fab fa-facebook"></i></a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ info.instagram_link }}" class="nav-link px-2"><i class="fab fa-instagram"></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <ul class="navbar-nav ml-auto pages">
+    {% if '/contact_us/' == request.path %}
+    <li class="nav-item active">
+      {% else %}
+    <li class="nav-item">
+      {% endif %}
+      <a href="{% url 'contact_us' %}" class="nav-link">Contact Us</a></li>
+
+    {% if '/gallery/' == request.path %}
+    <li class="nav-item active">
+      {% else %}
+    <li class="nav-item">
+      {% endif %}
+      <a href="{% url 'gallery' %}" class="nav-link">Gallery</a></li>
+
+    {% if '/our_team/' == request.path %}
+    <li class="nav-item active">
+      {% else %}
+    <li class="nav-item">
+      {% endif %}
+      <a href="{% url 'our_team' %}" class="nav-link">Our Team</a></li>
+
+    {% if '/workouts/' in request.path %}
+    <li class="nav-item active">
+      {% else %}
+    <li class="nav-item">
+      {% endif %}
+      <div class="dropdown">
+        <a class="nav-link">Home Workouts</a>
+        <div class="dropdown-content">
+          <a href="{% url 'beginner_workouts' %}">Beginner Level</a>
+          <a href="{% url 'intermediate_workouts' %}">Intermediate Level</a>
+          <a href="{% url 'advanced_workouts' %}">Advanced Level</a>
+        </div>
+      </div>
+      </div>
+    </li>
+    {% if '/classes/' in request.path %}
+    <li class="nav-item active">
+      {% else %}
+    <li class="nav-item">
+      {% endif %}
+      <div class="dropdown">
+        <a class="nav-link">Classes</a>
+        <div class="dropdown-content">
+          <a href="{% url 'presence_classes' %}">Presence Classes</a>
+          <a href="{% url 'public_classes' %}">Online Public Classes</a>
+          <a href="{% url 'private_classes' %}">Online Private Classes</a>
+        </div>
+      </div>
+    </li>
+
+    {% if '/' == request.path %}
+    <li class="nav-item active">
+      {% else %}
+    <li class="nav-item">
+      {% endif %}
+      <a href="{% url 'index' %}" class="nav-link">Home</a></li>
+
+  </ul>
+  <a href="{% url 'index' %}" class="navbar-brand"><img src="{% static 'images/logo.png' %}" alt="" />
+    <h5>WELLFIT</h5>
+  </a>
+</header>

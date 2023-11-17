@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gym Project | Registration Completed</title>
+    <link rel="stylesheet" href="{% static 'css/successful-payment.css' %}" />
+</head>
+
+<body>
+    <h1>Your class registration was successful</h1>
+    <h3>{{id}} : Registration ID</h3>
+    
+    <div class="buttons">
+    <a href="{% url 'index' %}">Return to Homepage</a>
+    <a href="{% url 'profile' %}">Go to User Profile</a>
+    </div>
+</body>

@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% block title %}| Gallery {% endblock %}
+{% block content %}
+
+<!--Banner-->
+<section>
+  <div class="banner" style="background-image: url('{{ banner.image.url }}');">
+    {% include 'partials/alerts.html' with x="50" %}
+    <h1 data-aos="fade-up" data-aos-duration="800">{{banner.title}} </h1>
+    <div class="page-address">
+      <span><i class="fa fa-home"></i></span>
+      <span>Image Gallery</span>
+      <span><i class="fas fa-chevron-right"></i></span>
+      <span> Home </span>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section class="container-fluid">
+  <div class="filters mb-4">
+    <form method="POST" action="{% url 'gallery' %}" class="gallery-form">
+      {% csrf_token %}
+      <button type="button" class="active-filter filter-check filter" data-rel="all" name="all"
+        onclick="filterActive(event)">
+        All
+      </button>
+      {% for class in classes %}
+      <button type="button" class="filter filter-check" data-rel="{{ class.title }}" name="filter"
+        onclick="filterActive(event)">{{ class.title }}</button>
+      {% endfor %}
+      <button type="button" class="filter filter-check" data-rel="buffet" name="filter" onclick="filterActive(event)">
+        Buffet
+      </button>
+      <button type="button" class="filter filter-check" data-rel="gym" name="filter" onclick="filterActive(event)">
+        Gym Environment
+      </button>
+    </form>
+  </div>
+  
+  <section class="container-fluid">
+    {% if gallery %}
+    <div class="gallery row" id="gallery">
+      {% for photos in gallery %}
+      <div class="pics gallery-item all {{photos.display_filter_id}} col-md-4 col-sm-6">
+        <a href="{{ photos.image.url }}" title="{{ photos.title}}"><img src="{{ photos.image.url }}" alt="" /></a>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="col-md-12">
+      <p>No images available in the gallery</p>
+    </div>
+    {% endif %}
+  </section>
+
+<!--Pagination-->
+  <div class="row mt-4">
+    <div class="col-md-12 d-flex justify-content-center">
+      {% if gallery.has_other_pages %}
+      <ul class="pagination">
+        {% if gallery.has_previous %}
+        <li class="page-item">
+          <a href="?page={{ gallery.previous_page_number }}" class="page_link" style="color: white;">&laquo;</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+          <a class="page-link">&laquo;</a>
+        </li>
+        {% endif %}
+        {% for i in gallery.paginator.page_range %}
+        {% if gallery.number == i %}
+        <li class="page-item active">
+          <a class="page-link">{{i}}</a>
+        </li>
+        {% else %}
+        <li class="page-item">
+          <a href="?page={{i}}" class="page-link">{{i}}</a>
+        </li>
+        {% endif %}
+        {% endfor %}
+        {% if gallery.has_next %}
+        <li class="page-item">
+          <a href="?page={{ gallery.next_page_number }}" class="page_link" style="color: white;">&raquo;</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+          <a class="page-link">&raquo;</a>
+        </li>
+        {% endif %}
+      </ul>
+      {% endif %}
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}

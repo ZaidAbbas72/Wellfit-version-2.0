@@ -1,0 +1,25 @@
+.parallax-title {
+  color: rgb(246, 76, 76);
+  font-size: calc(14px + 3vw);
+  display: inline-block;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.simple-title{
+  color: $SecondColor;
+  font-size: calc(12px + 2vw);
+  display: inline-block;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 1em;
+  padding-bottom: 10px;
+  border-bottom: solid 5px rgb(95, 95, 95);
+}
+
+@media (max-width:700px){
+  .parallax-title {
+    color: rgb(246, 76, 76);
+    font-size: calc(12px + 3vw);
+    display: inline-block;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+}

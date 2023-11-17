@@ -1,0 +1,28 @@
+.pagination .page-item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px;
+  }
+  .pagination .page-link:focus,.pagination .page-link:active{
+    outline: none !important;
+    box-shadow: none !important;}
+  .pagination .active .page-link{
+  background-color:#1b1b1b ;
+  }
+  .pagination .active .page-link:hover{
+   color:white ;
+    }
+  .page-link{
+    color: white;
+    background-color: #ff1919;
+    border: none;
+    
+  }
+  .page-link:hover{
+    color: black;
+  }
+  .disabled a{
+    background-color: black !important;
+  text-decoration: none;
+  }

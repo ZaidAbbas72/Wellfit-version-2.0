@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Language" content="en" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gym Project | Login</title>
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="{% static 'css/login&register.css' %}" />
+
+</head>
+
+<body>
+    <a href="{% url 'index' %}" class="brand">
+        <img src="{% static 'images/logo.png' %}" alt="" />
+        <h5>Gym Name</h5>
+    </a>
+
+    <!--Login-->
+    <div class="form mx-auto">
+        <div class="form-header">
+            Login
+            <i class="fas fa-user-circle"></i>
+        </div>
+
+        {% include 'partials/alerts.html' with x="100" %}
+
+        <form method="POST" action="{% url 'login' %}">
+            {% csrf_token %}
+
+            <label for="username">Username :</label>
+            <div class="input">
+                <i class="fas fa-user-tag"></i>
+                <input type="text" name="username" required>
+            </div>
+
+            <label for="password">Password :</label>
+            <div class="input">
+                <i class="fas fa-key"></i>
+                <input type="password" name="password" required>
+            </div>
+
+
+            <input type="submit" value="Login" required>
+            <div class="redirect-link">
+                <span>New user?</span>
+                <a href="{% url 'register' %}">Register on the site</a>
+            </div>
+        </form>
+    </div>
+
+    <a href="{% url 'index' %}" class="return">Return to Home Page</a>
+
+    <div class="lower-footer">
+        © 2020 Copyright :
+        <a href="{% url 'index' %}"> My Gym</a>
+    </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>

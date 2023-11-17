@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% block title %}| Advanced Home Workouts {% endblock %}
+{% block content %}
+<!--Banner-->
+<section>
+  <div class="banner" style="background-image: url('{{ banner.image.url }}');">
+    {% include 'partials/alerts.html' with x="50" %}
+    <h1 data-aos="fade-up" data-aos-duration="800">{{banner.title}}</h1>
+    <div class="page-address">
+      <span><i class="fa fa-home"></i></span>
+      <span>Advanced Level</span>
+      <span><i class="fas fa-chevron-right"></i></span>
+      <span>Home Workouts</span>
+      <span><i class="fas fa-chevron-right"></i></span>
+      <span> Home </span>
+    </div>
+  </div>
+</section>
+
+<!--Search box-->
+<section class="container">
+  <div class="search-box mx-auto">
+    <h1>Search for Workouts</h1>
+    <form action="{% url 'search' %}">
+      <div class="filter">
+        <div class="checkboxes">
+          <label class="checkbox">Beginner Level
+            <input type="checkbox" value="beginner" name="beginner">
+            <span class="checkmark"></span>
+          </label>
+
+          <label class="checkbox">Intermediate Level
+            <input type="checkbox" value="intermediate" name="intermediate">
+            <span class="checkmark"></span>
+          </label>
+
+          <label class="checkbox">Advanced Level
+            <input type="checkbox" value="advanced" name="advanced">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+        <select name="workouts-list">
+          <option disabled selected>Show By:</option>
+          {% if workouts %}
+          {% for workout in workouts %}
+          <option>{{ workout.title }}</option>
+          {% endfor %}
+          {% endif %}
+        </select>
+      </div>
+      <div class="search-input mx-auto">
+        <input type="submit" value="Search" name="submit">
+        <input type="text" name="keywords" placeholder="Search">
+        <i class="fas fa-search"></i>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!--Advanced Workouts-->
+<section class="container-fluid">
+  <div class="row workouts">
+    {% if workouts %}
+    {% for workout in workouts %}
+    <div class="col-md-4 col-sm-6 workout-card">
+      <img src="{{ workout.image.url }}" alt="Workout Image">
+      <div class="workout-info">
+        <h3>{{ workout.title }}</h3>
+        <a href="{% url 'workouts' workout.id %}">View Workouts</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="col-md-12">
+    <p>No workouts added yet</p>
+  </div>
+  {% endif %}
+
+
+  <!--Paginator-->
+  <div class="row mt-4">
+    <div class="col-md-12 d-flex justify-content-center">
+      {% if workouts.has_other_pages %}
+      <ul class="pagination">
+        {% if workouts.has_previous %}
+        <li class="page-item">
+          <a href="?page={{ workouts.previous_page_number }}" class="page_link" style="color: white;">&laquo;</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+          <a class="page-link">&laquo;</a>
+        </li>
+        {% endif %}
+        {% for i in workouts.paginator.page_range %}
+        {% if workouts.number == i %}
+        <li class="page-item active">
+          <a class="page-link">{{i}}</a>
+        </li>
+        {% else %}
+        <li class="page-item">
+          <a href="?page={{i}}" class="page-link">{{i}}</a>
+        </li>
+        {% endif %}
+        {% endfor %}
+        {% if workouts.has_next %}
+        <li class="page-item">
+          <a href="?page={{ workouts.next_page_number }}" class="page_link" style="color: white;">&raquo;</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+          <a class="page-link">&raquo;</a>
+        </li>
+        {% endif %}
+      </ul>
+      {% endif %}
+
+    </div>
+  </div>
+
+</section>
+
+{% endblock %}

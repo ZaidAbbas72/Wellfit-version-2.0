@@ -1,0 +1,193 @@
+$FirstColor: black;
+$SecondColor: rgb(255, 25, 25);
+$ThirdColor: white;
+$FourthColor: rgb(27, 27, 27);
+
+* {
+  outline: none;
+}
+
+
+
+body {
+  background: url("/static/images/login_register.jpg") no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.lower-footer {
+  color: $ThirdColor;
+  background-color: $SecondColor;
+  padding: 0.8rem 0;
+  text-align: center;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  a {
+    color: $FirstColor;
+    text-decoration: none;
+    font-weight: bolder;
+  }
+}
+
+
+.form {
+  background-color: $FourthColor;
+  text-align: right;
+  width: 40%;
+  border-radius: 10px;
+
+  form {
+    padding: 0 25px 10px 25px;
+    direction: rtl;
+
+  }
+
+  .input {
+    display: flex;
+    width: 100%;
+    height: 30px;
+
+    input {
+      width: 100%;
+      border: none;
+    }
+
+    i {
+      background-color: $SecondColor;
+      color: white;
+      min-width: 50px;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  label {
+    color: white;
+    margin: 0;
+    margin-top: 8px;
+    margin-bottom: 5px;
+  }
+
+  input[type="submit"] {
+    background-color: $SecondColor;
+    width: 35%;
+    color: white;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    margin-top: 15px;
+    font-size: 17px;
+    padding: 3px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    
+    &:focus,
+    &:active {
+      outline: none;
+    }
+  }
+
+  .form-header {
+    background-color: $SecondColor;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    font-size: calc(20px + 0.5vw);
+    padding-left: 45px;
+    font-weight: bolder;
+    margin-bottom: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+    i {
+      color: $FourthColor;
+      font-size: 35px;
+      margin: 0 15px;
+
+
+    }
+  }
+}
+
+
+.brand {
+  img {
+    width: 100%;
+  }
+
+  color: $SecondColor;
+  text-align: center;
+  display: block;
+  width: 200px;
+  margin:0 auto;
+
+  &:hover {
+    text-decoration: none;
+    color: black;
+
+  }
+}
+
+.redirect-link {
+  color: white;
+  display: flex;
+  justify-content: center;
+  margin: 7px;
+  font-size: calc(12px + 0.5vw);
+
+  a {
+    color: $SecondColor;
+    margin-right: 3px;
+
+  }
+}
+
+.return {
+  background-color: $SecondColor;
+  margin: 1em auto 5em auto;
+  display: block;
+  width: 200px;
+  text-align: center;
+  color: white;
+  border-radius: 20px;
+  font-weight: bolder;
+  height: 35px;
+  line-height: 35px;
+
+  &:hover {
+    text-decoration: none;
+    color: black;
+  }
+}
+
+
+
+@media (max-width: 955px) {
+  .form {
+    width: 70%;
+    ;
+  }
+}
+
+@media (max-width: 555px) {
+  .form {
+    width: 80%;
+    ;
+  }
+}
+
+@media (max-width: 455px) {
+  .form {
+    width: 95%;
+    ;
+  }
+}

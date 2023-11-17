@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %}| Class Details{% endblock %}
+{% block content %}
+<!--Banner-->
+<section>
+  <div class="banner" style="background-image: url('{{ banner.image.url }}');">
+    {% include 'partials/alerts.html' with x="50" %}
+    <h1 data-aos="fade-up" data-aos-duration="800">{{ banner.title }}</h1>
+    <div class="page-address">
+      <span><i class="fa fa-home"></i></span>
+      <span> Class Details </span>
+      <span><i class="fas fa-chevron-right"></i></span>
+      <span> Public Online Classes </span>
+      <span><i class="fas fa-chevron-right"></i></span>
+      <span> Classes </span>
+      <span><i class="fas fa-chevron-right"></i></span>
+      <span> Home </span>
+    </div>
+  </div>
+</section>
+
+<!--Coach-->
+<section class="container coach-info">
+  <img src="{{details.coach.photo.url}}" alt="">
+  <h5>Course Instructor: {{details.coach.name}}</h5>
+</section>
+
+<!--Live Stream-->
+<section class="live-stream container-fluid">
+  <div class="h_iframe-aparat_embed_frame">
+    <span style="display: block;padding-top: 30%"></span>
+    <iframe width="930" height="523" src="https://www.youtube.com/embed/2A-CCR2oqxE" title="Winter Bulk Day 4 - Chest and Side Delts" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </div>
+</section>
+
+
+<!--Class Info-->
+<section class="class-info">
+  <h3>Class Description</h3>
+  <p>
+    {{ details.description }}
+  </p>
+</section>
+
+<!-- Schedules -->
+<section class="container-fluid my-5">
+  <span class="simple-title">Schedule for Public Online Classes</span>
+
+  <!-- Tab links -->
+  <div class="tab">
+    {% for class in classes %}
+      {% if class == class1 %}
+        <button class="tablinks active" onclick="schedule(event, '{{ class.title }}')">{{ class.title }}</button>
+      {% else %}
+        <button class="tablinks" onclick="schedule(event, '{{ class.title }}')">{{ class.title }}</button>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <!-- Tab content -->
+  {% for class in classes %}
+    {% if class == class1 %}
+      <div id="{{ class.title }}" class="tabcontent" style="display: block;">
+    {% else %}
+      <div id="{{ class.title }}" class="tabcontent">
+    {% endif %}
+
+      <div class="schedule">
+        <img src="{% static 'images/Saturday.png' %}" alt="">
+        <h5>{{ class.saturday }}</h5>
+      </div>
+
+      <div class="schedule">
+        <img src="{% static 'images/Sunday.png' %}" alt="">
+        <h5>{{ class.sunday }}</h5>
+      </div>
+
+      <div class="schedule">
+        <img src="{% static 'images/Monday.png' %}" alt="">
+        <h5>{{ class.monday }}</h5>
+      </div>
+
+      <div class="schedule">
+        <img src="{% static 'images/Tuesday.png' %}" alt="">
+        <h5>{{ class.tuesday }}</h5>
+      </div>
+
+      <div class="schedule">
+        <img src="{% static 'images/Wednesday.png' %}" alt="">
+        <h5>{{ class.wednesday }}</h5>
+      </div>
+
+      <div class="schedule">
+        <img src="{% static 'images/Thursday.png' %}" alt="">
+        <h5>{{ class.thursday }}</h5>
+      </div>
+
+      <div class="schedule">
+        <img src="{% static 'images/Friday.png' %}" alt="">
+        <h5>{{ class.friday }}</h5>
+      </div>
+
+    </div>
+  {% endfor %}
+
+</section>
+
+{% endblock %}

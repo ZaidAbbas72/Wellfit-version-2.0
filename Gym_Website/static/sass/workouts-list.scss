@@ -1,0 +1,55 @@
+@import "Base";
+@import "NavBar";
+@import "Footer";
+@import "Banner";
+@import "Pagination";
+@import "Search";
+@import "Title";
+
+.workouts {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+
+    .workout-card {
+        background-clip: padding-box;
+        border: 10px solid transparent;
+        padding: 0;
+        transform: scale(0.9);
+
+        &:hover {
+            transform: scale(1);
+            transition: 0.3s;
+        }
+
+        img {
+            width: 100%;
+            height: 180px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+
+        }
+
+        .workout-info {
+            background-color: $FourthColor;
+            padding: 20px;
+
+            h3 {
+                font-size: calc(15.5px + 1vw);
+
+            }
+
+            a {
+                background-color: $SecondColor;
+                border-radius: 100px;
+                color: white;
+                padding: 5px;
+
+                &:hover {
+                    text-decoration: none;
+
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,110 @@
+@import "Base";
+@import "Banner";
+@import "Footer";
+@import "NavBar";
+@import "Register-Table";
+@import "Title";
+
+.payment{
+    background-color: green;
+    display: inline;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    font-weight: bold;
+  }
+  .card{
+      border: none !important;
+      background-color: transparent !important;
+  }
+  .card-body{
+      background-color: $FourthColor !important; 
+  }
+
+.classes{
+    margin-bottom: 10px;
+}
+
+.class-info{
+    background-color: $SecondColor !important;
+    border: 1px solid black;
+    color: white;
+    font-weight: bold;
+    padding: 15px;
+}
+
+#accordion{
+    width: 80%;
+    margin: 0 auto;
+    border: none;
+}
+
+#Email{
+    width: 60%;
+    margin: 0 auto;
+    border: none;
+}
+
+.collapse{
+    border: none !important;
+}
+.settings{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.subscribe{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row-reverse;
+}
+
+.save{
+    background-color: #0275d8;
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 5px;
+
+}
+
+.message-header{
+    background-color: rgb(241, 241, 241) !important;
+    border: 1px solid black;
+    color: black;
+    font-weight: bold;
+    padding: 5px;
+    font-size: calc(5px + 1vw);
+}
+
+.message-content{
+    font-weight: normal;
+    font-size: calc(5px + 1vw);
+}
+.register-info{
+    border: solid  $SecondColor 2px;
+    margin: 5px;
+    padding: 5px;
+    .info{
+        font-size: calc(5px + 1vw);
+        font-weight: normal;
+        color: $SecondColor;
+    }
+
+}
+
+.classes , .ids{
+    font-size: calc(4px + 1vw);
+}
+
+.collapsing{
+    transition-duration: 0.5s !important;
+}
+
+ .payment-info{
+    color: #0275d8;
+}

@@ -1,0 +1,16 @@
+@import "Base";
+@import "NavBar";
+@import "Plan";
+@import "Footer";
+@import "Table";
+@import "Coach";
+@import "Banner";
+@import "Title";
+
+.class-info {
+  text-align: right;
+  line-height: 2.5em;
+  h1 {
+    color: $SecondColor;
+  }
+}

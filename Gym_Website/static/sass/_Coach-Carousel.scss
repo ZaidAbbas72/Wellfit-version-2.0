@@ -1,0 +1,69 @@
+
+.team-container{
+  padding-left: 5em;
+  padding-right: 5em;
+}
+
+.team-img {
+  height: 350px !important;
+  width: 98% !important;
+  padding: 10px;
+}
+
+.team-info {
+  justify-content: space-around;
+  display: flex;
+
+  a {
+    border-radius: 10px;
+
+    i {
+      color: $ThirdColor;
+      padding: 8px;
+    }
+  }
+}
+
+.card:hover .team-body {
+  bottom: 0px;
+  transition: 0.4s;
+}
+
+.team-body {
+  position: absolute;
+  width: 100%;
+  bottom: -50px;
+  background-color: $SecondColor;
+}
+
+.team-info a:hover i {
+  color: $FirstColor;
+}
+
+.team-card {
+  width: 100%;
+  border: none;
+  background-color: $FourthColor;
+}
+
+.owl-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 2em !important;
+
+  .owl-dot {
+    span {
+      width: 35px !important;
+    }
+  }
+  .active {
+    width: auto !important;
+
+    span {
+      background-color: $SecondColor !important;
+    }
+  }
+}
+.card-text{
+  font-size: 30px;
+}

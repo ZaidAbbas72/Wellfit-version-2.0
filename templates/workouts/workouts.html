@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}| Home Workouts {% endblock %}
+{% block content %}
+  <!--Banner-->
+  <section>
+    <div class="banner" style="background-image: url('{{workouts.image.url }}');">
+      {% include 'partials/alerts.html' with x="50" %}
+      <h1 data-aos="fade-up" data-aos-duration="800">{{ banner.title }}</h1>
+      <div class="page-address">
+        <span><i class="fa fa-home"></i></span>
+        <span>{{ workouts.title }}</span>
+        <span><i class="fas fa-chevron-right"></i></span>
+        <span>Level {{ workouts.grade }}</span>
+        <span><i class="fas fa-chevron-right"></i></span>
+        <span>Home Workouts</span>
+        <span><i class="fas fa-chevron-right"></i></span>
+        <span> Home </span>
+      </div>
+    </div>
+  </section>
+  <!--Workouts-->
+  <section class="container-fluid my-5">
+    <span class="simple-title">List of Workouts</span>
+  {% if not workouts.selected_workouts.all %}
+  <div class="col-md-12">
+    <p>No workouts added yet</p>
+    </div>
+{% else %}
+    {% for workout in workouts.selected_workouts.all %}
+    <div class="row no-gutters workout">
+      <div class="col-md-6 workout-info order-md-2">
+        <div class="workout-info-header">
+          <h3>Exercise {{ forloop.counter }}</h3>
+          <h3>{{workout.title}}</h3>
+          <h3 style="font-family: Numberpile;">{{ workout.rule}}</h3>
+        </div>
+        <p>{{workout.description}}</p>
+      </div>
+      <div class="col-md-3 workout-image order-md-1">
+        <img src="{{workout.image.url}}" alt="" />
+      </div>
+    </div>
+    {% endfor%}
+{% endif%}
+  </section>
+  
+  <!--Scroll Up Button-->
+  <a href="#header" class="scrollup">
+    <i class="fas fa-chevron-up"></i>
+  </a>
+
+  {% endblock %}

@@ -1,0 +1,39 @@
+.plan {
+  color: $ThirdColor;
+  border-radius: 120px;
+  margin: 2em;
+  padding: 2em 0;
+  border: solid 2px $ThirdColor;
+  background-color: $FourthColor;
+
+  p {
+    word-spacing: 2px;
+    letter-spacing: 0.5px;
+    font-size: calc(7px + 0.5vw);
+  }
+  a {
+    color: $ThirdColor;
+    background-color: $SecondColor;
+    border-radius: 120px;
+    border: none;
+    padding: 10px 40px;
+    cursor: pointer;
+    background: linear-gradient(-120deg, $SecondColor, #c72c2c, #3a1111);
+  }
+
+  h2{
+    direction: rtl;
+  }
+   h1{
+    color: #ff1919;
+    font-size: calc(25px + 0.5vw);
+    direction: rtl;
+  }
+
+  &:hover {
+    background-color: $ThirdColor;
+    color: $FirstColor;
+    transform: scale(1.1);
+    transition: 0.3s;
+  }
+}

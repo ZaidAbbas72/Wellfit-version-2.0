@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block title %}| Contact Us {% endblock %}
+{% block content%}
+<!--Banner-->
+<section>
+  <div class="banner" style="background-image: url('{{ banner.image.url }}');">
+    {% include 'partials/alerts.html' with x="50" %}
+    <h1 data-aos="fade-up" data-aos-duration="800"> {{banner.title}} </h1>
+    <div class="page-address">
+      <span><i class="fa fa-home"></i></span>
+      <span>Contact Us</span>
+      <span><i class="fas fa-chevron-right"></i></span>
+      <span> Home </span>
+    </div>
+  </div>
+</section>
+
+<!--contact us-->
+<section class="container my-5">
+  {% if informations %}
+  <div class="d-flex row justify-content-around text-center my-5">
+    <div class="contact-item col-md-3 my-2">
+      <i class="fa fa-phone fa-3x circle-icon"></i>
+      <h4>Phone Number</h4>
+      <p>{{ informations.phone}}</p>
+    </div>
+
+    <div class="contact-item col-md-3 my-2">
+      <i class="fas fa-map-marker-alt fa-3x circle-icon"></i>
+      <h4>Address</h4>
+      <p>{{ informations.address }}</p>
+    </div>
+
+    <div class="contact-item col-md-3 my-2">
+      <i class="fa fa-envelope fa-3x circle-icon"></i>
+      <h4>Email Address</h4>
+      <p>{{ informations.email }}</p>
+    </div>
+  </div>
+  {% else %}
+  <div class="col-md-12">
+    <p>No information available</p>
+  </div>
+  {% endif %}
+
+  <!--message-->
+  <div class="message">
+    <h4>Send a Message</h4>
+    <p>
+      Share your comments, suggestions, and criticisms with us.
+    </p>
+    <div class="form">
+      <form class="contact-form" action="{% url 'contact_us' %}" method="POST">
+        {% csrf_token %}
+        <div class="inputs">
+          {% if user.is_authenticated %}
+          <input required type="text" value="{{ user.first_name }} {{ user.last_name }}"
+            placeholder="Write your name .." name="full-name" />
+          {% else %}
+          <input required type="text" placeholder="Write your name .." name="full-name" />
+          {% endif %}
+          <div class="append">
+            <i class="fa fa-user"></i>
+          </div>
+        </div>
+
+        <div class="inputs">
+          {% if user.is_authenticated %}
+          <input required type="email" value="{{user.email}}" placeholder="Enter your email .." name="email" />
+          {% else %}
+          <input required type="email" placeholder="Enter your email .." name="email" />
+          {% endif %}
+          <div class="append">
+            <i class="fa fa-envelope"></i>
+          </div>
+        </div>
+
+        <div class="inputs">
+          <textarea class="textarea" required placeholder="Write your message .." name="message-content"></textarea>
+          <div class="append">
+            <i class="fa fa-comment"></i>
+          </div>
+        </div>
+
+        <input type="submit" value="Send" name="submit" />
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

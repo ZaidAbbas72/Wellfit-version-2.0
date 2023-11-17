@@ -1,0 +1,172 @@
+footer {
+  background-color: $FourthColor;
+  font-weight: bolder;
+
+  h5 {
+    color: $SecondColor;
+  }
+
+  [class*="col-"] {
+    margin-top: 0.5em;
+  }
+}
+.newsletters {
+  .input-group {
+    .btn {
+      color: white;
+      background-color: $SecondColor;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      font-weight: bolder;
+      border: solid 1px white;
+      border-right: none;
+    }
+
+    .input-group-text {
+      background-color: $SecondColor;
+
+      i {
+        color: $ThirdColor;
+      }
+    }
+  }
+}
+
+.footer-icon {
+  display: flex;
+  justify-content: center;
+
+  a {
+    margin: 10px;
+    font-size: 30px;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    align-self: center;
+    text-decoration: none;
+    border-radius: 50%;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.25);
+    background-color: $SecondColor;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover i {
+      color: $FirstColor;
+    }
+
+    i {
+      color: $ThirdColor;
+    }
+  }
+}
+.useful-links {
+  margin-right: 2em;
+
+  h5 {
+    padding-left: 1.8em;
+  }
+
+  ul li {
+    list-style-type: none;
+    margin: 16px;
+
+    a {
+      text-decoration: none;
+      color: $ThirdColor;
+
+      &:hover {
+        color: $SecondColor;
+      }
+    }
+  }
+}
+.lower-footer {
+  color: $ThirdColor;
+  background-color: $SecondColor;
+  opacity: 0.8;
+  padding: 0.8rem 0;
+
+  a {
+    color: $FirstColor;
+    text-decoration: none;
+  }
+}
+
+.contact-us {
+  h5 {
+    text-align: right;
+    padding-right: 5.5em;
+  }
+
+  .footer-info {
+    text-align: right;
+    margin-right: 9em;
+
+    li {
+      font-size: 16px;
+      color: $ThirdColor;
+      position: relative;
+      list-style-type: none;
+      margin-top: 2em;
+      font-weight: normal;
+
+      i {
+        position: absolute;
+        right: -1.5em;
+        top: 0;
+        font-size: 24px;
+        color: $SecondColor;
+      }
+      span {
+        color: $SecondColor;
+        display: block;
+        font-family: "Oswald", sans-serif;
+        font-weight: bolder;
+      }
+    }
+  }
+}
+
+.about-us {
+  width: 80%;
+  line-height: 2rem;
+  text-align: justify;
+  text-align-last: center;
+}
+@media (max-width: 960px) {
+  .contact-us {
+    h5 {
+      text-align: center;
+      padding-right: 0;
+    }
+
+    .footer-info {
+      text-align: center;
+      margin-right: 0;
+      padding-right: 45px;
+
+      li {
+        font-size: 16px;
+        color: $ThirdColor;
+        position: relative;
+        list-style-type: none;
+        margin-bottom: 1em;
+        margin-top: 0;
+        i {
+          position: relative;
+          left: 2em;
+          right: 0;
+          top: 1em;
+          font-size: 24px;
+          color: $SecondColor;
+        }
+        span {
+          color: $SecondColor;
+          display: block;
+          font-family: "Oswald", sans-serif;
+          font-weight: bolder;
+        }
+      }
+    }
+  }
+}

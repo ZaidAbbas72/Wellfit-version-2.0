@@ -1,0 +1,255 @@
+header {
+  padding: 1em 0;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+}
+i {
+  color: $SecondColor;
+
+  &:hover{
+    color: white;
+  }
+}
+.navbar-brand,
+.navbar-brand2 {
+  color: $SecondColor !important;
+  text-align: center;
+  width: 10%;
+  padding: 0;
+  margin-left: 1em;
+  float: left;
+  white-space: nowrap;
+
+  h5 {
+    font-size: 2vw;
+  }
+
+  img {
+    width: 100%;
+  }
+}
+
+.pages {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-style: bold;
+  width: 60%;
+
+  .active {
+    .nav-link {
+      color: $SecondColor !important;
+
+      &:after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 100%;
+        content: ".";
+        color: transparent;
+        background: $SecondColor;
+        height: 1px;
+        transition: 0.5s;
+      }
+    }
+  }
+
+  .nav-link {
+    color: $ThirdColor !important;
+    position: relative;
+    font-size: calc(17px + 0.3vw);
+
+    &:after {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      width: 0%;
+      content: ".";
+      color: transparent;
+      background: $SecondColor;
+      height: 1px;
+      transition: 0.5s;
+    }
+
+    &:hover:after {
+      width: 100%;
+    }
+  }
+}
+
+
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+
+  .dropdown-content {
+    z-index: 2;
+    display: none;
+    position: absolute;
+    background-color: $FourthColor;
+    min-width: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    left: 50%;
+    transform: translate(-50%, 0);
+    border-radius: 20px;
+
+
+    a {
+      text-decoration: none;
+      display: block;
+      color: $ThirdColor;
+      position: relative;
+      white-space: nowrap;
+      padding: 3px 20px;
+      margin: 10px 0;
+
+      &:after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 0%;
+        content: ".";
+        color: transparent;
+        background: $SecondColor;
+        height: 1px;
+        transition: 0.5s;
+      }
+
+      &:hover:after {
+        width: 70%;
+      }
+    }
+  }
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.nav-divider {
+  background-image: linear-gradient(270deg, $SecondColor 50%);
+
+  background-size: 1px 60%;
+
+  background-position: left;
+
+  background-repeat: no-repeat;
+}
+
+.social-nav {
+  margin: 0 1em;
+}
+
+.toggle {
+  text-align: right;
+  width: 100%;
+  display: none;
+}
+
+.cart{
+  color: $SecondColor;
+  font-size: 10px;
+}
+@media (max-width: 925px) {
+  header {
+    display: block;
+  }
+
+  .toggle {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .social-nav {
+    margin: 0;
+    display: none;
+  }
+
+  .pages {
+    display: none;
+    z-index: 1;
+
+    .nav-item {
+      border: solid 1px $FirstColor;
+    }
+
+    .nav-link {
+      color: $ThirdColor !important;
+      position: relative;
+      font-size: calc(17px + 0.3vw);
+
+      &:after {
+        display: none;
+      }
+
+      &:hover {
+        color: $SecondColor !important;
+      }
+    }
+  }
+
+  .active {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 100%;
+    background-color: $FourthColor;
+  }
+
+  .navbar-brand {
+    display: none;
+  }
+}
+
+.login {
+  background-color: $FourthColor;
+  text-align: right;
+  width: 100%;
+  display: none;
+
+  form {
+    padding: 10px 40px;
+    direction: rtl;
+  }
+
+  input {
+    width: 100%;
+    border-radius: 2px;
+    border: none;
+    margin: 0;
+  }
+
+  label {
+    color: white;
+    margin: 0;
+    margin-top: 15px;
+  }
+
+  input[type="submit"] {
+    background-color: $SecondColor;
+    width: 70%;
+    color: white;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    font-size: larger;
+
+    &:focus,
+    &:active {
+      outline: none;
+    }
+  }
+
+
+}

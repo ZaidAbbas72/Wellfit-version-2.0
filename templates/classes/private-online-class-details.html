@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %}| Class Details{% endblock %}
+{% block content %}
+<!--Banner-->
+<section>
+  <div class="banner" style="background-image: url('{{ banner.image.url }}');">
+    {% include 'partials/alerts.html' with x="50" %}
+    <h1 data-aos="fade-up" data-aos-duration="800">{{ banner.title }}</h1>
+    <div class="page-address">
+      <span><i class="fa fa-home"></i></span>
+      <span> Class Details </span>
+      <span><i class="fas fa-chevron-right"></i></span>
+      <span> Private Online Classes </span>
+      <span><i class="fas fa-chevron-right"></i></span>
+      <span> Classes </span>
+      <span><i class="fas fa-chevron-right"></i></span>
+      <span> Home </span>
+    </div>
+  </div>
+</section>
+<!--Coach Avatar-->
+<section class="container coach-info">
+  <img src="{{details.coach.photo.url}}" alt="">
+  <h5>Course Coach: {{details.coach.name}}</h5>
+</section>
+
+<!--Live Stream-->
+<iframe width="935" height="526" src="https://www.youtube.com/embed/c8hjhRqIwHE" title="Yoga For Beginners :Part 1 | Yoga Routine | Yoga At Home | Yoga Routine For Beginners | Cult Fit" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<section class="live-stream container-fluid">
+  {% if user.is_authenticated %}
+    {% if details.title in cart_items %}
+      <div class="h_iframe-aparat_embed_frame">
+        <span style="display: block; padding-top: 30%"></span>
+        <iframe scrolling="no" allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" src="{{ details.coach.live_stream_link }}?embed&fa"></iframe>
+      </div>
+    {% else %}
+      <h3>You must register to participate in the class</h3>
+    {% endif %}
+  {% else %}
+    <h3>You must register to participate in the class</h3>
+  {% endif %}
+</section>
+
+
+<!--Class Info-->
+<section class="class-info">
+  <h3>Class Description</h3>
+  <p>
+    {{ details.description }}
+  </p>
+</section>
+
+<!-- Schedules -->
+<section class="container-fluid my-5">
+  <span class="simple-title">Private Online Classes Schedule</span>
+  
+  <!-- Tab links -->
+  <div class="tab">
+    {% for class in classes %}
+    {% if class == class1 %}
+    <button class="tablinks active" onclick="schedule(event, '{{ class.title }}')">{{ class.title }}</button>
+    {% else %}
+    <button class="tablinks" onclick="schedule(event, '{{ class.title }}')">{{ class.title }}</button>
+    {% endif %}
+    {% endfor %}
+  </div>
+
+  <!-- Tab content -->
+  {% for class in classes %}
+  {% if class == class1 %}
+  <div id="{{ class.title }}" class="tabcontent" style="display: block;">
+    {% else %}
+    <div id="{{ class.title }}" class="tabcontent">
+      {% endif %}
+
+      <div class="schedule">
+        <img src="{% static 'images/saturday.png' %}" alt="">
+        <h5>{{ class.saturday }}</h5>
+      </div>
+
+      <div class="schedule">
+        <img src="{% static 'images/sunday.png' %}" alt="">
+        <h5>{{ class.sunday }}</h5>
+      </div>
+
+      <div class="schedule">
+        <img src="{% static 'images/monday.png' %}" alt="">
+        <h5>{{ class.monday }}</h5>
+      </div>
+
+      <div class="schedule">
+        <img src="{% static 'images/tuesday.png' %}" alt="">
+        <h5>{{ class.tuesday }}</h5>
+      </div>
+
+      <div class="schedule">
+        <img src="{% static 'images/wednesday.png' %}" alt="">
+        <h5>{{ class.wednesday }}</h5>
+      </div>
+
+      <div class="schedule">
+        <img src="{% static 'images/thursday.png' %}" alt="">
+        <h5>{{ class.thursday }}</h5>
+      </div>
+
+      <div class="schedule">
+        <img src="{% static 'images/friday.png' %}" alt="">
+        <h5>{{ class.friday }}</h5>
+      </div>
+
+    </div>
+    {% endfor %}
+</section>
+
+
+{% endblock %}

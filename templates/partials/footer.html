@@ -1,0 +1,81 @@
+{% load static %}
+
+<footer>
+  <div class="row no-gutters">
+    <div class="col-lg-4">
+      <div>
+        <img src="{% static 'images/logo.png' %}" alt="" style="width: 30%;" />
+        <h5>WELLFIT</h5>
+        <div class="mx-auto about-us">
+          <p>{{ Our sports center, with over 15 years of experience in the field of bodybuilding, has been active since 2005. We opened our sports hall in 2005 and 
+              have been active in various disciplines, 
+              specializing in both men and under the supervision
+                of experienced and international coaches }}</p>
+        </div>
+      </div> 
+      <div class="footer-icon">
+        <a href="{{ info.instagram_link }}" class="instagram"><i class="fab fa-instagram"></i></a>
+        <a href="{{ info.twitter_link }}" class="twitter"><i class="fab fa-twitter"></i></a>
+        <a href="{{ info.facebook_link }}" class="facebook"><i class="fab fa-facebook-f"></i></a>
+      </div>
+    </div>
+    <div class="col-lg-4 mt-4">
+      <div class="useful-links">
+        <h5>Useful Links</h5>
+        <ul>
+          {% if user.is_authenticated %}
+          <li><a href="{% url 'profile' %}">User Profile</a></li>
+          {% else %}
+          <li><a href="{% url 'login' %}">Login</a></li>
+          {% endif %}
+          <li><a href="https://www.menshealth.com/">External Articles</a></li>
+          <li><a href="https://www.calculator.net/bmi-calculator.html">BMI Calculator</a></li>
+          <li><a href="{% url 'gallery' %}">Gallery</a></li>
+        </ul>
+      </div>
+
+      <div class="newsletters p-3">
+        <div class="mb-2 text-white">
+          <h5>Stay updated with the latest site announcements</h5>
+        </div>
+        <form method="POST">
+          {% csrf_token %}
+          <div class="input-group">
+            <button type="submit" class="btn shadow-none" name="submit_footer_subscribe">Subscribe</button>
+            <input type="email" class="form-control text-right shadow-none" name="email_subscribe"
+              placeholder="Enter your email" />
+            <div class="input-group-append">
+              <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-lg-4 contact-us mt-4">
+      <h5>Contact Us</h5>
+      <ul class="footer-info">
+        <li>
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Address:</span>
+          {{ info.address }}
+        </li>
+        <li>
+          <i class="fa fa-phone"></i>
+          <span>Email:</span>
+          {{ info.email }}
+        </li>
+
+        <li>
+          <i class="fa fa-envelope"></i>
+          <span>Phone:</span>
+          {{ info.phone }}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="lower-footer">
+    © 2023 Copyright :
+    <a href="{% url 'index' %}">WELLFIT Inc.</a>
+  </div>
+</footer>
